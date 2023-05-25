@@ -36,6 +36,7 @@ var quizData = [{
     correct: "b",
     },
 ];
+var timerEl =document.getElementById("timer");
 var quiz = document.getElementById("quiz");
 var answerEls = document.querySelectorAll(".answer");
 var questionEl = document.getElementById("question");
@@ -45,9 +46,11 @@ var c_text = document.getElementById("c_text");
 var d_text = document.getElementById("d_text");
 var submitBtn = document.getElementById("submit");
 let currentQuiz = 0;
-let score = 0;
+let score = 75;
 loadQuiz();
+
 function loadQuiz() {
+    timerEl.textContent = score;
     deselectAnswers();
     var currentQuizData = quizData[currentQuiz];
     questionEl.innerText = currentQuizData.question;
@@ -72,14 +75,17 @@ submitBtn.addEventListener("click", () => {
     var answer = getSelected();
     if (answer) {
     if (answer === quizData[currentQuiz].correct) {
-    score++;
+    // score++;
 }
+    else {
+        score-=10
+    }
     currentQuiz++;
     if (currentQuiz < quizData.length) {
     loadQuiz();
     } else {
     quiz.innerHTML = `
-        <h2>You scored ${score *25}%</h2>
+        <h2>You scored ${score}</h2>
         <button onclick="location.reload()">Restart Quiz</button>
         `;
 }}});
