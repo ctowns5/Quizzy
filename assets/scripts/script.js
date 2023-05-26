@@ -99,8 +99,9 @@ submitBtn.addEventListener("click", () => {
     } else {
       quiz.innerHTML = `
         <h2>You scored ${score}</h2>
-        <button onclick="location.reload()">Restart Quiz</button>
+        <button onclick="location.href='highscores.html'")">High scores</button>
         `;
     }
   }
 });
+localStorage.setItem("score", score);
